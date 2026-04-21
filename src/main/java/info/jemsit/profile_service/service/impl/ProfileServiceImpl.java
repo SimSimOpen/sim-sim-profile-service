@@ -72,7 +72,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    @RabbitListener(queues = MEDIA_QUEUE)
+    @RabbitListener(queues = MEDIA_QUEUE, ackMode = "AUTO")
     public void handleRabbitMQMessage(RabbitMQMessage event) {
         log.info("Received message: {}", event.getClass().getSimpleName());
         switch (event) {
