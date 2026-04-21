@@ -5,6 +5,7 @@ import info.jemsit.common.dto.response.auth.ProfileResponseDTO;
 import info.jemsit.profile_service.data.model.UserProfile;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring")
@@ -13,5 +14,6 @@ public interface ProfileMapper {
     UserProfile toEntity(ProfileRequestDTO request);
 
     @BeanMapping(unmappedSourcePolicy = ReportingPolicy.IGNORE)
-    ProfileResponseDTO toDTO(UserProfile userProfile);
+    @Mapping(target = "profileImageUrl", expression = "java(mediaBaseURL + userProfile.getProfileImageUrl())")
+    ProfileResponseDTO toDTO(UserProfile userProfile, String mediaBaseURL);
 }
