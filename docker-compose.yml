@@ -21,10 +21,10 @@ services:
       resources:
         limits:
           cpus: '1.0'          # Limit to 1 CPU core
-          memory: 1024M         # Hard limit (container killed if exceeded)
+          memory: 512M         # Hard limit (container killed if exceeded)
         reservations:
           cpus: '0.5'          # Guaranteed CPU allocation
-          memory: 512M
+          memory: 256M
     restart: always
     networks:
       - simsim
