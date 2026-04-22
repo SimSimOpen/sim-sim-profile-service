@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 
-import static info.jemsit.common.data.constants.RabbitMQConstants.MEDIA_QUEUE;
+import static info.jemsit.common.data.constants.RabbitMQConstants.MEDIA_PROFILE_QUEUE;
 
 @Service
 @RequiredArgsConstructor
@@ -72,7 +72,7 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    @RabbitListener(queues = MEDIA_QUEUE, ackMode = "AUTO")
+    @RabbitListener(queues = MEDIA_PROFILE_QUEUE, ackMode = "AUTO")
     public void handleRabbitMQMessage(RabbitMQMessage event) {
         log.info("Received message: {}", event.getClass().getSimpleName());
         switch (event) {
